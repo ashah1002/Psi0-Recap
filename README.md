@@ -158,8 +158,8 @@ vim scripts/data/task_description_dict.json
 Run conversion script
 ```
 python scripts/data/raw_to_lerobot.py \
-  --data-root=/hfm/data/real_teleop_g1/g1_real_raw \
-  --work-dir=/hfm/data/real \
+  --data-root=$PWD/data/real_teleop_g1/g1_real_raw \
+  --work-dir=$PWD/data/real \
   --repo-id=psi0-real-g1 \
   --robot-type=g1 \
   --task=$task
@@ -512,7 +512,7 @@ Download pre-trained `psi-0` VLM backbone
 python scripts/data/download.py \
   --repo-id=USC-PSI-Lab/psi-model \
   --remote-dir=pre.fast.egodex.2512241941/pretrained/ckpt_200000 \
-  --local-dir=/hfm/cache/checkpoints/psi0/pre.fast.egodex.2512241941.ckpt200k \
+  --local-dir=$PWD/cache/checkpoints/psi0/pre.fast.egodex.2512241941.ckpt200k \
   --repo-type=model
 ```
 
