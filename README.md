@@ -1,4 +1,4 @@
-<h1 align="center">[RSS26']Ψ₀: An Open Foundation Model <br/> Towards Universal Humanoid Loco-Manipulation
+<h1 align="center">[RSS26'] Ψ₀: An Open Foundation Model <br/> Towards Universal Humanoid Loco-Manipulation
 </h1>
 
 <p align="center">
@@ -80,13 +80,32 @@ Set up the $\Psi_0$ environment:
 ```
 uv venv .venv-psi --python 3.10
 source .venv-psi/bin/activate
+GIT_LFS_SKIP_SMUDGE=1 uv sync \
+  --group serve \
+  --group viz \
+  --group psi \
+  --index-strategy unsafe-best-match \
+  --active
+uv pip install flash_attn==2.7.4.post1 --no-build-isolation
+```
+
+> If you want to support `SIMPLE` evaluation, you can use the following commands to install `SIMPLE` along with `Psi0`. See also [quickstart](examples/quick_start/psi.md).
+
+```
+git submodule update --init --recursive
 GIT_LFS_SKIP_SMUDGE=1 uv sync --all-groups --index-strategy unsafe-best-match --active
 uv pip install flash_attn==2.7.4.post1 --no-build-isolation
+UV_PROJECT_ENVIRONMENT=${pwd}/.venv-psi ./scripts/install_curobo.sh
 ```
 
 Test installation, a version number should be displayed.
 ```bash
-python -c "import psi;print(psi.__version__)"
+python -c "import psi;print(psi.__version__);"
+```
+
+Verify `SIMPLE` installation
+``` bash
+python -c "import simple; print(simple.__version__)"
 ```
 
 Verify the shared `lerobot` stack is importable.
@@ -466,6 +485,8 @@ source src/h_rdt/datasets/pretrain/setup_pretrain.sh
 source .venv-psi/bin/activate
 bash src/h_rdt/datasets/pretrain/run_pretrain_pipeline.sh
 ```
+
+> [Optinal] If you also want to train `FAST` tokenizer, please refer to [traing FAST](src/fast/README.md).
 
 ```
 bash scripts/train/psi0/pretrain-egodex-psi0-fast.sh 
