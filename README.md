@@ -547,6 +547,8 @@ and more variants for ablation studies:
 
 Download the selected models
 
+> Edit `.env` to use `HF_ENDPOINT=https://hf-mirror.com` if needed.
+
 ```
 python scripts/data/download.py \
   --repo-id=USC-PSI-Lab/psi-model \
